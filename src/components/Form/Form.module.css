@@ -1,0 +1,28 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.labelName {
+  margin-bottom: 20px;
+}
+
+.labelTag {
+  margin-bottom: 20px;
+}
+
+.inputName {
+  margin-left: 50px;
+}
+
+.inputTag {
+  margin-left: 20px;
+}
+
+.btnSubmit {
+  display: inline-block;
+  width: 60px;
+  margin-top: 20px;
+}
