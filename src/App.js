@@ -1,29 +1,31 @@
-import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import AppBar from './Components/AppBar';
 import TodosView from './views/TodosView';
-import CounterView from './views/CounterView';
+import HomeView from './views/HomeView';
+import RegisterView from './views/RegisterView';
+import LoginView from './views/LoginView';
+import Container from './Components/Container';
+import { authOperations } from './redux/auth';
 
-const App = () => (
-  <>
-    <ul>
-      <li>
-        <Link to="/counter">Счётчик</Link>
-      </li>
-      <li>
-        <Link to="/todos">Заметки</Link>
-      </li>
-    </ul>
+export default function App() {
+  // const dispatch = useDispatch();
 
-    <Switch>
-      <Route path="/counter">
-        <CounterView />
-      </Route>
+  // useEffect(() => {
+  //   dispatch(authOperations.fetchCurrentUser());
+  // }, [dispatch]);
 
-      <Route path="/todos">
-        <TodosView />
-      </Route>
-    </Switch>
-  </>
-);
+  return (
+    <Container>
+      <AppBar />
 
-export default App;
+      <Switch>
+        <Route exact path="/" component={HomeView} />
+        <Route path="/register" component={RegisterView} />
+        <Route path="/login" component={LoginView} />
+        <Route path="/todos" component={TodosView} />
+      </Switch>
+    </Container>
+  );
+}
