@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
+// import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import AppBar from './Components/AppBar';
 import TodosView from './views/TodosView';
@@ -7,7 +7,7 @@ import HomeView from './views/HomeView';
 import RegisterView from './views/RegisterView';
 import LoginView from './views/LoginView';
 import Container from './Components/Container';
-import { authOperations } from './redux/auth';
+// import { authOperations } from './redux/auth';
 
 export default function App() {
   // const dispatch = useDispatch();
