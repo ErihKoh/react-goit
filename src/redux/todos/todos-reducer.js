@@ -44,8 +44,11 @@ const filter = createReducer('', {
   [changeFilter]: (_, { payload }) => payload,
 });
 
+const error = createReducer(null, {});
+
 export default combineReducers({
   items,
   filter,
   loading,
+  error,
 });

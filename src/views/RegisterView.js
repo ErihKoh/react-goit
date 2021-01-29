@@ -34,6 +34,19 @@ export default function RegisterView() {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (!name) {
+      alert('enter name');
+      return;
+    }
+    if (!email) {
+      alert('enter email');
+      return;
+    }
+    if (!password) {
+      alert('enter password');
+      return;
+    }
     dispatch(authOperations.register({ name, email, password }));
     setName('');
     setEmail('');

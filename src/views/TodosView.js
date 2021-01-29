@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Container from '../Components/Container';
 import Stats from '../Components/Stats';
 import TodoList from '../Components/TodoList';
 import TodoEditor from '../Components/TodoEditor';
 import Filter from '../Components/TodoFilter';
 import todosOperations from '../../src/redux/todos/todos-operations';
+import todosSelectors from '../../src/redux/todos/todos-selector';
 import Modal from '../Components/Modal';
 import IconButton from '../Components/IconButton';
 import { ReactComponent as AddIcon } from '../icons/add.svg';
@@ -17,17 +18,17 @@ const barStyles = {
 };
 
 export const TodosView = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dispatch = useDispatch();
+
+  const isLoadingTodos = useSelector(todosSelectors.getLoading);
 
   useEffect(() => {
     dispatch(todosOperations.fetchTodos());
   }, [dispatch]);
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
+  const toggleModal = () => setIsModalOpen(state => !state);
 
   return (
     <Container>
@@ -37,11 +38,12 @@ export const TodosView = () => {
         <IconButton onClick={toggleModal} aria-label="Добавить todo">
           <AddIcon width="40" height="40" fill="#fff" />
         </IconButton>
+        {isLoadingTodos && <h1>Загружаем...</h1>}
       </div>
 
       <TodoList />
 
-      {showModal && (
+      {isModalOpen && (
         <Modal onClose={toggleModal}>
           <TodoEditor onSave={toggleModal} />
         </Modal>

@@ -31,6 +31,12 @@ export default function LoginView() {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (!email) {
+      alert('enter email');
+      return;
+    }
+
     dispatch(authOperations.logIn({ email, password }));
     setEmail('');
     setPassword('');

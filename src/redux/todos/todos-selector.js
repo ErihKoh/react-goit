@@ -2,6 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const getTodos = state => state.todos.items;
 const getFilter = state => state.todos.filter;
+const getLoading = state => state.todos.loading;
 
 const getTotalTodosCount = state => {
   const todos = getTodos(state);
@@ -17,19 +18,21 @@ const getVisibleTodos = createSelector(
   (todos, filter) => {
     const normalizedFilter = filter.toLowerCase();
 
-    return todos.filter(({ text }) =>
-      text.toLowerCase().includes(normalizedFilter),
+    return todos.filter(({ description }) =>
+      description?.toLowerCase().includes(normalizedFilter),
     );
   },
 );
 
-export default {
+const todosSelectors = {
   getTodos,
   getFilter,
+  getLoading,
   getVisibleTodos,
   getTotalTodosCount,
   getCompletedTodoCount,
 };
+export default todosSelectors;
 
 // const getVisibleTodos = state => {
 //   const todos = getTodos(state);
