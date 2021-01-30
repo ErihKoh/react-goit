@@ -22,31 +22,31 @@ export default function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
-  return (
-    !isFetchingCurrentUser && (
-      <Container>
-        <AppBar />
+  return isFetchingCurrentUser ? (
+    <h1> Показываем React Skeleton</h1>
+  ) : (
+    <Container>
+      <AppBar />
 
-        <Switch>
-          <Suspense fallback={<p>Loading...</p>}>
-            <PublicRoute exact path="/">
-              <HomeView />
-            </PublicRoute>
+      <Switch>
+        <Suspense fallback={<p>Loading...</p>}>
+          <PublicRoute exact path="/">
+            <HomeView />
+          </PublicRoute>
 
-            <PublicRoute path="/register" restricted>
-              <RegisterView />
-            </PublicRoute>
+          <PublicRoute path="/register" restricted>
+            <RegisterView />
+          </PublicRoute>
 
-            <PublicRoute path="/login" restricted redirectTo="/todos">
-              <LoginView />
-            </PublicRoute>
+          <PublicRoute path="/login" restricted redirectTo="/todos">
+            <LoginView />
+          </PublicRoute>
 
-            <PrivateRoute path="/todos" redirectTo="/login">
-              <TodosView />
-            </PrivateRoute>
-          </Suspense>
-        </Switch>
-      </Container>
-    )
+          <PrivateRoute path="/todos" redirectTo="/login">
+            <TodosView />
+          </PrivateRoute>
+        </Suspense>
+      </Switch>
+    </Container>
   );
 }
